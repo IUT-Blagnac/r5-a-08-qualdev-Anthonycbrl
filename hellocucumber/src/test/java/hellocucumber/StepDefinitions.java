@@ -2,10 +2,9 @@ package hellocucumber;
 
 import io.cucumber.java.en.*;
 
-import org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StepDefinitions {
-
     @Given("an example scenario")
     public void anExampleScenario() {
     }
@@ -18,27 +17,37 @@ public class StepDefinitions {
     public void theScenarioPasses() {
     }
 
-}
+    String actualAnswer = "";
+    String expectedAnswer = "";
 
-class IsItFriday {
     static String isItFriday(String today) {
-        return null;
+        return "Friday".equals(today) ? "TGIF" : "Nope";
     }
 
     @Given("today is Sunday")
     public void today_is_sunday() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        this.actualAnswer = "Sunday";
     }
 
     @When("I ask whether it's Friday yet")
     public void i_ask_whether_it_s_friday_yet() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        this.expectedAnswer = "Friday";
     }
 
     @Then("I should be told {string}")
     public void i_should_be_told(String string) {
-        assertEquals(expectedAnswer, actualAnswer);
+        String result = isItFriday(actualAnswer);
+        assertEquals(string, result);
     }
+
+    @Given("today is Friday")
+    public void today_is_friday() {
+        this.actualAnswer = "Friday";
+    }
+
+    @Given("today is {string}")
+    public void today_is_anything(String today) {
+        this.actualAnswer = today;
+    }
+
 }
