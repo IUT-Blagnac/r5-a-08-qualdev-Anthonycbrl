@@ -7,7 +7,28 @@ Ce dépôt concerne les rendus de mailto:A_changer@etu.univ-tlse2.fr[Jonh Doe].
 
 == TP1
 
-.Exemple de code
+sceanario :
+
+Feature: Is it Friday yet?
+  Everybody wants to know when it's Friday
+
+  Scenario: Sunday isn't Friday
+    Given today is Sunday
+    When I ask whether it's Friday yet
+    Then I should be told "Nope"
+
+  Scenario: Friday is Friday
+    Given today is Friday
+    When I ask whether it's Friday yet
+    Then I should be told "TGIF"
+
+  Scenario: anything else!
+    Given today is "anything"
+    When I ask whether it's Friday yet
+    Then I should be told "Nope"
+
+
+.Code pour repondre au sceanario:
 [source,java]
 ---
  String actualAnswer = "";
@@ -45,7 +66,7 @@ Ce dépôt concerne les rendus de mailto:A_changer@etu.univ-tlse2.fr[Jonh Doe].
 
 ---
 
-.Exemple d'image insérée en asciidoc
+.Image de validation des tests
 image::IMG/TP1_tests.png[width=80%]
 
 == TP2...
